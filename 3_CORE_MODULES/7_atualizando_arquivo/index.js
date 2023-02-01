@@ -1,5 +1,3 @@
-// Agora tratou a escrita do arquivo, dizendo que quando o usuário escrever o nome dele no arquivo vai mandar ele para a barra de novo sem nome. Então vou poder escrever meu nome quantas vezes eu quiser o sistema não para.
-
 const http = require("http");
 const fs = require("fs");
 const url = require("url");
@@ -8,7 +6,7 @@ const port = 3000;
 
 const server = http.createServer((req, res) => {
   var urlInfo = require("url").parse(req.url, true);
-  const name = urlInfo.query.name; //Formulario
+  const name = urlInfo.query.name;
 
   res.statusCode = 200;
   res.setHeader("Content-Type", "text/html");
@@ -20,10 +18,13 @@ const server = http.createServer((req, res) => {
       return res.end();
     });
   } else {
-    fs.writeFile("arquivo.txt", name, function (err, data) {
+
+    const nameNewLine = name + ',\r\n' //Pular linha no arquivo txt
+
+    fs.appendFile("arquivo.txt", nameNewLine, function (err, data) {
       res.writeHead(302, {
-        Location: "/",
-      }); //writeFile = ESCREVE 
+        Location: '/',
+      });
       return res.end();
     });
   }
