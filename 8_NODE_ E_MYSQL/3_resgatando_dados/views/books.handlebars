@@ -1,0 +1,8 @@
+{{!-- Vai exibir o título do livro com essa classe de Bold e a quantidade de páginas ou seja todas as colunas serão exibidas aqui. --}}
+
+<h1>Livros disponíveis:</h1>
+<div class="books-container">
+    {{#each books}}
+    <div>#{{this.id}} - <span class="bold">{{this.title}}</span> - {{this.pageqty}} páginas</div>
+    {{/each}}
+</div>
